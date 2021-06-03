@@ -1,10 +1,17 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TodoItem } from '../../components/TodoItem';
 import { TodoItemAdd } from '../../components/TodoItemAdd';
+import { fetch } from './todoSlice';
 
 export const TodoListPage = () => {
-  const todoList = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetch());
+  }, []);
+
+  const todoList = useSelector((state) => state.todo.items);
 
   return (
     <div>

@@ -1,50 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 
 export const todoSlice = createSlice({
   name: 'todo',
-  initialState: [
-    {
-      id: 1,
-      text: 'This is a text',
-      isChecked: false
-    },
-    {
-      id: 2,
-      text: 'This is a second text',
-      isChecked: false
-    },
-    {
-      id: 3,
-      text: 'This is the third text',
-      isChecked: true
-    },
-    {
-      id: 4,
-      text: 'This is a text',
-      isChecked: false
-    }
-  ],
+  initialState: {
+    items: []
+  },
   reducers: {
+    setList: (state, { payload }) => {
+      console.log(payload);
+      state.items = [...payload];
+    },
     add: (state, { payload: text }) => {
       const id = Math.random();
-      state.push({ text, isChecked: false, id });
+      state.items.unshift({ text, isChecked: false, id });
     },
     remove: (state, { payload: id }) => {
-      const itemIndex = state.findIndex(i => i.id === id);
-      state.splice(itemIndex, 1);
+      const itemIndex = state.items.findIndex(i => i.id === id);
+      state.items.splice(itemIndex, 1);
     },
     check: (state, { payload: id }) => {
-      const itemIndex = state.findIndex(i => i.id === id);
-      state[itemIndex].isChecked = true;
+      const itemIndex = state.items.findIndex(i => i.id === id);
+      state.items[itemIndex].isChecked = true;
     },
     uncheck: (state, { payload: id }) => {
-      const itemIndex = state.findIndex(i => i.id === id);
-      state[itemIndex].isChecked = false;
+      const itemIndex = state.items.findIndex(i => i.id === id);
+      state.items[itemIndex].isChecked = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, remove, check, uncheck } = todoSlice.actions;
+export const { add, remove, check, uncheck, setList } = todoSlice.actions;
+
+export const fetch = createAction('todo/fetch');
 
 export default todoSlice.reducer;
