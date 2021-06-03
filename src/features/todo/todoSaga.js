@@ -6,7 +6,7 @@ export function* watchGetTodoList() {
   yield takeLatest(todoFetchList, getTodoList);
 }
 
-export function* getTodoList(action) {
+export function* getTodoList() {
   try {
     const response = yield call(fetchTodoList);
     yield put(todoSetList(response));
