@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { TodoItem } from '../components/TodoItem';
-import { TodoItemAdd } from '../components/TodoItemAdd';
+import { TodoItem } from '../../components/TodoItem';
+import { TodoItemAdd } from '../../components/TodoItemAdd';
 
 export const TodoListPage = () => {
   const todoList = useSelector((state) => state.todo);

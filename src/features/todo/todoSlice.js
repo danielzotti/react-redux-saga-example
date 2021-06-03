@@ -25,26 +25,21 @@ export const todoSlice = createSlice({
     }
   ],
   reducers: {
-    add: (state, item) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      // state = [...state, item];
-      state.push(item);
+    add: (state, { payload: text }) => {
+      const id = Math.random();
+      state.push({ text, isChecked: false, id });
     },
-    remove: (state, item) => {
-      const itemIndex = state.findIndex(i => i.id === item.id);
-      // state = state.filter(i => i.id !== item.id);
+    remove: (state, { payload: id }) => {
+      const itemIndex = state.findIndex(i => i.id === id);
       state.splice(itemIndex, 1);
     },
-    check: (state, item) => {
-      const itemIndex = state.findIndex(i => i.id === item.id);
-      state[itemIndex] = { ...item, isChecked: true };
+    check: (state, { payload: id }) => {
+      const itemIndex = state.findIndex(i => i.id === id);
+      state[itemIndex].isChecked = true;
     },
-    uncheck: (state, item) => {
-      const itemIndex = state.findIndex(i => i.id === item.id);
-      state[itemIndex] = { ...item, isChecked: false };
+    uncheck: (state, { payload: id }) => {
+      const itemIndex = state.findIndex(i => i.id === id);
+      state[itemIndex].isChecked = false;
     },
   },
 });
