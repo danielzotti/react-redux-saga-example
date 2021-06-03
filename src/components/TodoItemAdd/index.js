@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { add } from '../../features/todo/todoSlice';
+import { todoAdd } from '../../features/todo/todoSlice';
 
 export const TodoItemAdd = () => {
 
@@ -10,7 +10,7 @@ export const TodoItemAdd = () => {
 
   const save = (event) => {
     if(event.key === 'Enter' && event?.target?.value) {
-      dispatch(add(event.target.value));
+      dispatch(todoAdd(event.target.value));
       textInput.current.value = null;
     }
   };

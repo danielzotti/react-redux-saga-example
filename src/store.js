@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from '@reduxjs/toolkit';
 import todoReducer from './features/todo/todoSlice';
 import createSagaMiddleware from 'redux-saga';
-import { watcherSaga } from './saga';
+import rootSaga from './saga';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const reducer = combineReducers({
@@ -11,9 +12,9 @@ const reducer = combineReducers({
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
 
-const store = createStore(reducer, {}, applyMiddleware(...middleware));
+const store = createStore(reducer, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
-sagaMiddleware.run(watcherSaga);
+sagaMiddleware.run(rootSaga);
 
 // const action = type => store.dispatch({ type });
 

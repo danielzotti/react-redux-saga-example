@@ -1,12 +1,15 @@
-import { all, put, call } from 'redux-saga/effects';
+import { all, put, call, takeLatest } from 'redux-saga/effects';
 import { fetchTodoList } from './api';
-import { setList } from './todoSlice';
+import { todoFetchList, todoSetList } from './todoSlice';
 
+export function* watchGetTodoList() {
+  yield takeLatest(todoFetchList, getTodoList);
+}
 
 export function* getTodoList(action) {
   try {
     const response = yield call(fetchTodoList);
-    yield put(setList(response));
+    yield put(todoSetList(response));
   } catch(error) {
     console.log('error', error);
   }
@@ -14,6 +17,6 @@ export function* getTodoList(action) {
 
 export default function* todoSaga() {
   yield all([
-    getTodoList()
+    watchGetTodoList()
   ]);
 }

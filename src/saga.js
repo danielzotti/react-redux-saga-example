@@ -1,13 +1,9 @@
-import { all, takeLatest } from 'redux-saga/effects';
-import { getTodoList } from './features/todo/todoSaga';
-import { fetch } from './features/todo/todoSlice';
+import { all } from 'redux-saga/effects';
+import todoSaga from './features/todo/todoSaga';
 
-export function* watcherSaga() {
-  yield takeLatest(fetch, getTodoList);
-}
 
 export default function* rootSaga() {
   yield all([
-    watcherSaga()
+    todoSaga()
   ]);
 }

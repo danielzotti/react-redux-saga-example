@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TodoItem } from '../../components/TodoItem';
 import { TodoItemAdd } from '../../components/TodoItemAdd';
-import { fetch } from './todoSlice';
+import { todoFetchList } from './todoSlice';
 
 export const TodoListPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetch());
-  }, []);
+    dispatch(todoFetchList());
+  }, [dispatch]);
 
   const todoList = useSelector((state) => state.todo.items);
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { check, remove, uncheck } from '../../features/todo/todoSlice';
+import { todoCheck, todoRemove, todoUncheck } from '../../features/todo/todoSlice';
 
 export const TodoItem = ({ item: { id, text, isChecked } }) => {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
-    dispatch(remove(id));
+    dispatch(todoRemove(id));
   };
 
   const toggleCheck = () => {
-    dispatch(!!isChecked ? uncheck(id) : check(id));
+    dispatch(!!isChecked ? todoUncheck(id) : todoCheck(id));
   };
 
   return (
