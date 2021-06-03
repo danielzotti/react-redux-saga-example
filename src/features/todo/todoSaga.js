@@ -12,6 +12,7 @@ export function* getTodoList() {
     yield put(todoSetList(response));
   } catch(error) {
     console.log('error', error);
+    yield [];
   }
 }
 
