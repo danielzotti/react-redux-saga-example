@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, createStore } from '@reduxjs/toolkit';
+import { combineReducers, createStore } from '@reduxjs/toolkit';
 import todoReducer from './features/todo/todoSlice';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
