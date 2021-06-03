@@ -16,6 +16,4 @@ const store = createStore(reducer, {}, composeWithDevTools(applyMiddleware(...mi
 
 sagaMiddleware.run(rootSaga);
 
-// const action = type => store.dispatch({ type });
-
 export default store;
