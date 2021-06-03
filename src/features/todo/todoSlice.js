@@ -2,28 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const todoSlice = createSlice({
   name: 'todo',
-  initialState: [
-    {
-      id: 1,
-      text: 'This is a text',
-      isChecked: false
-    },
-    {
-      id: 2,
-      text: 'This is a second text',
-      isChecked: false
-    },
-    {
-      id: 3,
-      text: 'This is the third text',
-      isChecked: true
-    },
-    {
-      id: 4,
-      text: 'This is a text',
-      isChecked: false
-    }
-  ],
+  initialState: [],
   reducers: {
     add: (state, { payload: text }) => {
       const id = Math.random();
